@@ -9,8 +9,8 @@
 		<property name="address" value="Bhopal" />
 	</bean>
 
-	<bean id="person1" class="com.rays.test.Person">
+	<!-- <bean id="person1" class="com.rays.test.Person">
 		<constructor-arg value="Ram"></constructor-arg>
 		<constructor-arg value="Indore"></constructor-arg>
-	</bean>
+	</bean> -->
 </beans>

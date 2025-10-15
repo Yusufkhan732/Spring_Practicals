@@ -1,16 +1,15 @@
 package com.rays.test;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestPerson {
 
 	public static void main(String[] args) {
 
-		BeanFactory factory = new XmlBeanFactory(new ClassPathResource("person.xml"));
+		ApplicationContext Context = new ClassPathXmlApplicationContext(new String[] { "person.xml", "employee.xml" });
 
-		Person p = (Person) factory.getBean("person");
+		Person p = (Person) Context.getBean("person");
 
 		System.out.println("person's name :" + p.getName());
 
@@ -18,11 +17,10 @@ public class TestPerson {
 
 		System.out.println("--------------------------");
 
-		Person p1 = (Person) factory.getBean("person1");
+		Employee e = Context.getBean("employee", Employee.class);
 
-		System.out.println("person's name :" + p1.getName());
-
-		System.out.println("person's address:" + p1.getAddress());
+		System.out.println(e.getEmpName());
+		System.out.println(e.getSalary());
 
 	}
 }
