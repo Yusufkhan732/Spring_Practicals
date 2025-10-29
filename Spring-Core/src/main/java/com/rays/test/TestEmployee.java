@@ -11,8 +11,8 @@ public class TestEmployee {
 
 		Employee e = context.getBean("employee", Employee.class);
 
-		System.out.println(e.getEmpName());
-		System.out.println(e.getSalary());
+		System.out.println("Employee's:" + e.getEmpName());
+		System.out.println("Employee's:" + e.getSalary());
 	}
 
 }
