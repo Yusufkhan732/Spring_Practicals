@@ -6,4 +6,8 @@ public interface UserServiceInt {
 
 	public long add(UserDTO dto);
 
+	public void update(UserDTO dto);
+
+	public void delete(UserDTO dto);
+
 }

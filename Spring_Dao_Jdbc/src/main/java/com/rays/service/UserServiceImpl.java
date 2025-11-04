@@ -14,8 +14,24 @@ public class UserServiceImpl implements UserServiceInt {
 	private UserDAOInt dao;
 
 	@Transactional(propagation = Propagation.REQUIRED)
+	@Override
 	public long add(UserDTO dto) {
 		long pk = dao.add(dto);
 		return pk;
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	@Override
+	public void update(UserDTO dto) {
+
+		dao.update(dto);
+
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	@Override
+	public void delete(UserDTO dto) {
+		dao.delete(dto);
+
 	}
 }

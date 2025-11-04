@@ -21,6 +21,8 @@ public class TestUserService {
 		TestUserService test = (TestUserService) context.getBean("TestUserService");
 
 		test.testAdd();
+		// test.testUpdate();
+		// test.testDelete();
 
 	}
 
@@ -29,13 +31,36 @@ public class TestUserService {
 		UserDTO dto = new UserDTO();
 
 		dto.setId(1);
-		dto.setFirstName("xyz");
-		dto.setLastName("yy");
+		dto.setFirstName("Akbar");
+		dto.setLastName("Mansuri");
 		dto.setLogin("admin");
 		dto.setPassword("pass1234");
 
 		long pk = service.add(dto);
 		System.out.println("Data Inserted: " + pk);
 
+	}
+
+	public void testUpdate() {
+
+		UserDTO dto = new UserDTO();
+
+		dto.setId(1);
+		dto.setFirstName("Yusuf");
+		dto.setLastName("khan");
+		dto.setLogin("Admin");
+		dto.setPassword("pass1234");
+
+		service.update(dto);
+		System.out.println("Data Updated : ");
+
+	}
+
+	public void testDelete() {
+
+		UserDTO dto = new UserDTO();
+		dto.setId(1);
+		service.delete(dto);
+		System.out.println("Data Delete :");
 	}
 }

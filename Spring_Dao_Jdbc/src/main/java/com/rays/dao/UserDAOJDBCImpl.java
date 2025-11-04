@@ -30,4 +30,21 @@ public class UserDAOJDBCImpl implements UserDAOInt {
 		return pk;
 	}
 
+	@Override
+	public void update(UserDTO dto) {
+		String sql = "update st_user set first_name = ?,last_name =?,login = ?,password = ? where id = ?";
+
+		int pk = jdbcTemplate.update(sql, dto.getFirstName(), dto.getLastName(), dto.getLogin(), dto.getPassword(),
+				dto.getId());
+
+	}
+
+	@Override
+	public void delete(UserDTO dto) {
+		String sql = "delete from st_user where id = ?";
+
+		int pk = jdbcTemplate.update(sql, dto.getId());
+
+	}
+
 }
