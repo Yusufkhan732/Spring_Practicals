@@ -1,7 +1,11 @@
 package com.rays.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +21,6 @@ public class UserDAOHiImpl implements UserDAOInt {
 
 		Session session = sessionFactory.getCurrentSession();
 		long pk = (Long) session.save(dto);
-
 		return pk;
 	}
 
@@ -38,4 +41,28 @@ public class UserDAOHiImpl implements UserDAOInt {
 
 	}
 
+	public UserDTO findBypk(long id) {
+
+		Session session = sessionFactory.getCurrentSession();
+		UserDTO dto = session.get(UserDTO.class, id);
+		return dto;
+	}
+
+	public UserDTO findBylogin(String login) {
+		UserDTO dto = null;
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Criteria criteria = session.createCriteria(UserDTO.class);
+
+		criteria.add(Restrictions.eq("login", login));
+
+		List list = criteria.list();
+
+		if (list.size() == 1) {
+			dto = (UserDTO) list.get(0);
+
+		}
+		return dto;
+	}
 }

@@ -21,10 +21,10 @@ public class TestUserService {
 		TestUserService test = (TestUserService) context.getBean("testUserService");
 
 		// test.testAdd();
-
 		// test.testUpdate();
-		
-		test.testDelete();
+		// test.testDelete();
+		// test.testfindBypk();
+		test.testfindBylogin();
 	}
 
 	public void testAdd() {
@@ -52,5 +52,34 @@ public class TestUserService {
 
 	public void testDelete() {
 		service.delete(4);
+	}
+
+	public void testfindBypk() {
+
+		UserDTO dto = service.findBypk(3);
+
+		if (dto != null) {
+			System.out.print(dto.getId());
+			System.out.print("\t" + dto.getFirstName());
+			System.out.print("\t" + dto.getLastName());
+			System.out.print("\t" + dto.getLogin());
+			System.out.println("\t" + dto.getPassword());
+		} else {
+			System.out.println("Id Not found!");
+		}
+	}
+
+	public void testfindBylogin() {
+		UserDTO dto = service.findBylogin("sanjana123@gmail.com");
+
+		if (dto != null) {
+			System.out.print(dto.getId());
+			System.out.print("\t" + dto.getFirstName());
+			System.out.print("\t" + dto.getLastName());
+			System.out.print("\t" + dto.getLogin());
+			System.out.println("\t" + dto.getPassword());
+		} else {
+			System.out.println("Login not found!");
+		}
 	}
 }

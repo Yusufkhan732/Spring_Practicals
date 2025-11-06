@@ -10,4 +10,8 @@ public interface UserServiceInt {
 
 	public void delete(long id);
 
+	public UserDTO findBypk(long id);
+
+	public UserDTO findBylogin(String login);
+
 }

@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserServiceInt {
 		dao.delete(id);
 
 	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public UserDTO findBypk(long id) {
+		return dao.findBypk(id);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public UserDTO findBylogin(String login) {
+		return dao.findBylogin(login);
+	}
 }
