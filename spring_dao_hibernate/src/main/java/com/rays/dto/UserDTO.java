@@ -21,13 +21,13 @@ public class UserDTO {
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 
-	@Column(name = " LAST_NAME")
+	@Column(name = "LAST_NAME")
 	private String lastName;
 
-	@Column(name = " LOGIN")
+	@Column(name = "LOGIN")
 	private String login;
 
-	@Column(name = " PASSWORD")
+	@Column(name = "PASSWORD")
 	private String password;
 
 	public long getId() {

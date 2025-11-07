@@ -1,5 +1,7 @@
 package com.rays.test;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,7 +26,9 @@ public class TestUserService {
 		// test.testUpdate();
 		// test.testDelete();
 		// test.testfindBypk();
-		test.testfindBylogin();
+		// test.testfindBylogin();
+		// test.testAuthenticate();
+		test.testsearch();
 	}
 
 	public void testAdd() {
@@ -56,7 +60,7 @@ public class TestUserService {
 
 	public void testfindBypk() {
 
-		UserDTO dto = service.findBypk(3);
+		UserDTO dto = service.findByPk(3);
 
 		if (dto != null) {
 			System.out.print(dto.getId());
@@ -80,6 +84,39 @@ public class TestUserService {
 			System.out.println("\t" + dto.getPassword());
 		} else {
 			System.out.println("Login not found!");
+		}
+	}
+
+	public void testAuthenticate() {
+		UserDTO dto = service.authenticate("shad123@gmail.com", "pass1223");
+
+		if (dto != null) {
+			System.out.print(dto.getId());
+			System.out.print("\t" + dto.getFirstName());
+			System.out.print("\t" + dto.getLastName());
+			System.out.print("\t" + dto.getLogin());
+			System.out.println("\t" + dto.getPassword());
+		} else {
+			System.out.println("Login and password  invalid");
+		}
+	}
+
+	public void testsearch() {
+
+		UserDTO dto = new UserDTO();
+		dto.setId(1);
+		// dto.setFirstName("Sanjana");
+		// dto.setLogin("sanjana123@gmail.com");
+
+		List<UserDTO> list = service.search(dto, 1, 3);
+
+		for (UserDTO udto : list) {
+			System.out.print(udto.getId());
+			System.out.print("\t" + udto.getFirstName());
+			System.out.print("\t" + udto.getLastName());
+			System.out.print("\t" + udto.getLogin());
+			System.out.println("\t" + udto.getPassword());
+
 		}
 	}
 }
