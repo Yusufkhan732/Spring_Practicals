@@ -15,41 +15,41 @@ import com.rays.dto.UserDTO;
 @Service
 public class UserServiceImpl implements UserServiceInt {
 
+	// Hibernate se
 	@Autowired
-	private UserDAOHiberImpl dao;
-	
+	private UserDAOHiberImpl HibernateDao;
+	// Jdbc se
 	@Autowired
-	private UserDAOJDBCImpl jdbcDAO ;
-	
+	private UserDAOJDBCImpl jdbcDao;
 
 	public long add(UserDTO dto) throws Exception {
 
-		return jdbcDAO.add(dto);
+		return HibernateDao.add(dto);
 	}
 
 	public void update(UserDTO dto) {
-		jdbcDAO.update(dto);
+		jdbcDao.update(dto);
 
 	}
 
 	public void delete(long id) {
-		dao.delete(id);
+		HibernateDao.delete(id);
 
 	}
 
 	public UserDTO findByPk(long pk) {
-		return dao.findByPk(pk);
+		return HibernateDao.findByPk(pk);
 	}
 
 	public UserDTO findBylogin(String login) {
-		return dao.findBylogin(login);
+		return HibernateDao.findBylogin(login);
 	}
 
 	public UserDTO authenticate(String login, String password) {
-		return dao.authenticate(login, password);
+		return HibernateDao.authenticate(login, password);
 	}
 
 	public List search(UserDTO dto, int pageNo, int pageSize) {
-		return dao.search(dto, pageNo, pageSize);
+		return HibernateDao.search(dto, pageNo, pageSize);
 	}
 }

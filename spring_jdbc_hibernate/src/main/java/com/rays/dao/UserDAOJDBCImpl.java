@@ -42,13 +42,27 @@ public class UserDAOJDBCImpl implements UserDAOInt {
 
 	}
 
-	public void delete(UserDTO dto) {
+	public void delete(long pk) {
 		String sql = "delete from st_user where id = ?";
 
-		int i = jdbcTemplate.update(sql, dto.getId());
+		int i = jdbcTemplate.update(sql, pk);
 
 		System.out.println("record delete successfully: " + i);
 
+	}
+
+	public UserDTO findByPk(long pk) {
+		UserDTO user = null;
+		try {
+
+			String sql = "select * from st_user where id = ?";
+			Object[] param = { pk };
+			user = jdbcTemplate.queryForObject(sql, param, new UserMapper());
+			return user;
+		} catch (EmptyResultDataAccessException e) {
+
+			return null;
+		}
 	}
 
 	public UserDTO findBylogin(String login) {
@@ -116,13 +130,4 @@ public class UserDAOJDBCImpl implements UserDAOInt {
 		return list;
 	}
 
-	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public UserDTO findByPk(long pk) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
