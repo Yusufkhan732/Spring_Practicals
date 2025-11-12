@@ -9,7 +9,7 @@
 <body>
 	<div align="center">
 
-		<h1>${message}</h1>
+		<h1 style="background-color: red;">${message}</h1>
 	</div>
 </body>
 </html>
