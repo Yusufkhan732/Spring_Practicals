@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome</title>
 </head>
 <body>
-	<div align="center">
-
-		<h1 style="background-color: red;">${message}</h1>
+	<%@ include file="Header.jsp"%>
+	<div align="center" style="color: green;">
+		<h1>${message}</h1>
 	</div>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
