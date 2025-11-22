@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: admin
+Build-Jdk: 11.0.24
+Implementation-Title: spring_boot
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.rays
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/spring_boot
+Created-By: Maven Integration for Eclipse
+
