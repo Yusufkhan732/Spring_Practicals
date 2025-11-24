@@ -30,9 +30,10 @@ public class UserDAO {
 		RoleDTO roleDto = roleDao.findByPk(dto.getRoleId());
 		dto.setRoleName(roleDto.getName());
 
-		if (dto.getId() != null && dto.getId() > 0) {
-			UserDTO userData = findByPk(dto.getId());
-		}
+		/*
+		 * if (dto.getId() != null && dto.getId() > 0) { UserDTO userData =
+		 * findByPk(dto.getId()); }
+		 */
 	}
 
 	public long add(UserDTO dto) {
@@ -66,8 +67,15 @@ public class UserDAO {
 
 		if (dto != null) {
 			if (dto.getFirstName() != null && dto.getFirstName().length() > 0) {
-				predicatesList.add(builder.like(qrRoot.get("name"), dto.getFirstName() + "%"));
+				predicatesList.add(builder.like(qrRoot.get("firstName"), dto.getFirstName() + "%"));
 			}
+			if (dto.getLastName() != null && dto.getLastName().length() > 0) {
+				predicatesList.add(builder.like(qrRoot.get("lastName"), dto.getLastName() + "%"));
+			}
+			if (dto.getLoginId() != null && dto.getLoginId().length() > 0) {
+				predicatesList.add(builder.like(qrRoot.get("loginId"), dto.getLoginId() + "%"));
+			}
+
 		}
 
 		cq.where(predicatesList.toArray(new Predicate[predicatesList.size()]));

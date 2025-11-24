@@ -23,7 +23,7 @@ import com.rays.form.UserForm;
 import com.rays.service.UserService;
 
 @RestController
-@RequestMapping(value = "UserCtl")
+@RequestMapping(value = "User")
 public class UserCtl extends BaseCtl {
 
 	@Autowired
@@ -31,32 +31,26 @@ public class UserCtl extends BaseCtl {
 
 	@PostMapping("save")
 	public ORSResponse save(@RequestBody @Valid UserForm form, BindingResult bindingResult) {
-
-		ORSResponse res = validate(bindingResult);
-		if (!res.isSuccess()) {
-			return res;
-
-		}
-		UserDTO dto = (UserDTO) form.getDto();
-		long pk = userService.add(dto);
-		res.addData(pk);
-
-		res.addMessage("Role addedd successfully..!!!");
-		return res;
-	}
-
-	@PostMapping("update")
-	public ORSResponse update(@RequestBody @Valid UserForm form, BindingResult bindingResult) {
-
 		ORSResponse res = validate(bindingResult);
 
 		if (!res.isSuccess()) {
 			return res;
-
 		}
+
 		UserDTO dto = (UserDTO) form.getDto();
-		userService.add(dto);
-		res.addMessage("Role addedd successfully..!!!");
+
+		if (dto.getId() != null && dto.getId() > 0) {
+			userService.update(dto);
+			res.addData(dto.getId());
+			res.addMessage("Data Updated Successfully..!!");
+			res.setSuccess(true);
+		} else {
+
+			long pk = userService.add(dto);
+			res.addData(pk);
+			res.addMessage("Data added Successfully..!!");
+			res.setSuccess(true);
+		}
 		return res;
 	}
 
